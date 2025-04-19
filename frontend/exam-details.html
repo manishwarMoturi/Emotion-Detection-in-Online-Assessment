@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Details - Emotion Detection Coding Platform</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <style>
+        .exam-details-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--background-paper);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .exam-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .exam-title h1 {
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .exam-meta {
+            display: flex;
+            gap: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .exam-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .status-upcoming {
+            background-color: #2196f3;
+            color: white;
+        }
+
+        .status-ongoing {
+            background-color: #ff9800;
+            color: white;
+        }
+
+        .exam-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-card {
+            background-color: var(--background-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-card h3 {
+            margin-top: 0;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .info-label {
+            color: var(--text-secondary);
+        }
+
+        .info-value {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .exam-instructions {
+            margin-bottom: 2rem;
+        }
+
+        .exam-instructions h2 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .instructions-list {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .instructions-list li {
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .start-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .start-btn:hover {
+            background-color: #7b1fa2;
+        }
+
+        .back-btn {
+            background-color: var(--text-secondary);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #666;
+        }
+
+        .countdown {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .exam-details-container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .exam-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .exam-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Emotion Detection Coding Platform</div>
+        <div class="nav-links">
+            <a href="student-dashboard.html">Dashboard</a>
+            <a href="practice.html">Practice</a>
+            <a href="exams.html" class="active">Exams</a>
+            <a href="profile.html">Profile</a>
+            <a href="index.html" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="exam-details-container">
+        <div class="exam-header">
+            <div class="exam-title">
+                <h1>Data Structures Final</h1>
+                <div class="exam-meta">
+                    <span>March 20, 2024</span>
+                    <span class="exam-status status-upcoming">Upcoming</span>
+                </div>
+            </div>
+            <div class="countdown" id="countdown">Starts in: 2 days, 5 hours, 30 minutes</div>
+        </div>
+
+        <div class="exam-info">
+            <div class="info-card">
+                <h3>Exam Details</h3>
+                <div class="info-item">
+                    <span class="info-label">Duration</span>
+                    <span class="info-value">2 hours</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Questions</span>
+                    <span class="info-value">5</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Passing Score</span>
+                    <span class="info-value">70%</span>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3>Technical Requirements</h3>
+                <div class="info-item">
+                    <span class="info-label">Webcam</span>
+                    <span class="info-value">Required</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Browser</span>
+                    <span class="info-value">Chrome/Firefox</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Internet</span>
+                    <span class="info-value">Stable Connection</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="exam-instructions">
+            <h2>Instructions</h2>
+            <ul class="instructions-list">
+                <li>Ensure you have a stable internet connection before starting the exam.</li>
+                <li>Make sure your webcam is working properly for emotion detection.</li>
+                <li>Do not leave the exam page during the test, as this may be flagged as suspicious activity.</li>
+                <li>You will have 2 hours to complete all 5 questions.</li>
+                <li>Each question will test your knowledge of data structures and algorithms.</li>
+                <li>You can use any programming language of your choice.</li>
+                <li>Your code will be evaluated for correctness, efficiency, and readability.</li>
+            </ul>
+        </div>
+
+        <div class="action-buttons">
+            <button class="start-btn" id="startExamBtn" disabled>Start Exam</button>
+            <button class="back-btn" onclick="window.location.href='exams.html'">Back to Exams</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get exam ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const examId = urlParams.get('id');
+            
+            // In a real application, you would fetch exam details from the server
+            // For demo purposes, we'll just log the exam ID
+            console.log(`Loading exam details for exam ID: ${examId}`);
+            
+            // Countdown timer functionality
+            function updateCountdown() {
+                // In a real application, this would calculate the time until the exam starts
+                // For demo purposes, we'll just show a static countdown
+                const countdownElement = document.getElementById('countdown');
+                countdownElement.textContent = 'Starts in: 2 days, 5 hours, 30 minutes';
+                
+                // If the exam is about to start, enable the start button
+                // For demo purposes, we'll just enable it after 5 seconds
+                setTimeout(() => {
+                    const startBtn = document.getElementById('startExamBtn');
+                    startBtn.disabled = false;
+                    startBtn.textContent = 'Start Exam Now';
+                    startBtn.onclick = () => {
+                        // In a real application, this would navigate to the exam page
+                        alert('Starting exam...');
+                        window.location.href = `exam-taking.html?id=${examId}`;
+                    };
+                }, 5000);
+            }
+            
+            // Update countdown every second
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
+    </script>
+</body>
+</html> 

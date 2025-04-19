@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Problem - Emotion Detection Coding Platform</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/practice.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/editor/editor.main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Emotion Detection Coding Platform</div>
+        <div class="nav-links">
+            <a href="student-dashboard.html">Dashboard</a>
+            <a href="#" class="active">Practice</a>
+            <a href="#">Exams</a>
+            <a href="#" class="profile">Profile</a>
+        </div>
+    </nav>
+
+    <div class="practice-container">
+        <div class="problem-section">
+            <div class="problem-description">
+                <h2>Two Sum</h2>
+                <span class="difficulty easy">Easy</span>
+                <div class="description-content">
+                    <p>Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.</p>
+                    <h3>Example:</h3>
+                    <div class="example-box">
+                        <p><strong>Input:</strong> nums = [2,7,11,15], target = 9</p>
+                        <p><strong>Output:</strong> [0,1]</p>
+                        <p><strong>Explanation:</strong> Because nums[0] + nums[1] == 9, we return [0, 1].</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-section">
+                <div class="editor-header">
+                    <select id="language-select">
+                        <option value="javascript">JavaScript</option>
+                        <option value="python">Python</option>
+                        <option value="java">Java</option>
+                    </select>
+                    <button id="run-btn" class="run-btn">Run Code</button>
+                </div>
+                <div id="editor"></div>
+                <div id="output" class="output-panel">
+                    <div class="output-header">Output</div>
+                    <div id="output-content"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="emotion-section">
+            <div class="webcam-container">
+                <h3>Emotion Detection</h3>
+                <video id="webcam" autoplay playsinline></video>
+                <div class="emotion-status">
+                    <p>Current Emotion: <span id="current-emotion">Detecting...</span></p>
+                    <div class="emotion-confidence">
+                        <div id="confidence-bar"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="emotion-history">
+                <h3>Emotion History</h3>
+                <div id="emotion-timeline"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/loader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-landmarks-detection"></script>
+    <script src="scripts/practice.js"></script>
+</body>
+</html> 
