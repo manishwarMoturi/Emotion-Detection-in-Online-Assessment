@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 // Modal functionality
 function openModal() {
     document.getElementById('createExamModal').style.display = 'block';
@@ -156,7 +156,6 @@ function createExamSubmitHandler(e) {
 // Placeholder functions for editExam, submitExamUpdate, deleteExam, and export button can be added similarly.
 
 fetchExams();
-=======
 // Modal functionality
 function openModal() {
     document.getElementById('createExamModal').style.display = 'block';
@@ -314,4 +313,3 @@ function createExamSubmitHandler(e) {
 // Placeholder functions for editExam, submitExamUpdate, deleteExam, and export button can be added similarly.
 
 fetchExams();
->>>>>>> 13fc31d (Initial Commit)
