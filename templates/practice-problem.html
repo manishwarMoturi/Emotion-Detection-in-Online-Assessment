@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Problem - {{ problem.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/practice.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Emotion Detection Coding Platform</div>
+        <div class="nav-links">
+            <a href="{{ url_for('student_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('practice') }}">Practice</a>
+            <a href="{{ url_for('exams') }}">Exams</a>
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('index') }}" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="practice-container">
+        <h2>{{ problem.title }}</h2>
+        <p><strong>Difficulty:</strong> {{ problem.difficulty|capitalize }}</p>
+        <div class="problem-description">
+            <p>{{ problem.description }}</p>
+        </div>
+        <div class="back-button">
+            <button onclick="window.history.back();">Back</button>
+        </div>
+    </div>
+</body>
