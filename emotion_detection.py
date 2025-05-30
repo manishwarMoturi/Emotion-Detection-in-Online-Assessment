@@ -3,6 +3,11 @@ import cv2
 import matplotlib.pyplot as plt
 from keras.models import load_model
 from keras.preprocessing.image import img_to_array
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+# ...rest of your code
 
 # Emotion labels
 EMOTIONS = ["angry", "disgust", "scared", "happy", "sad", "surprised", "neutral"]
