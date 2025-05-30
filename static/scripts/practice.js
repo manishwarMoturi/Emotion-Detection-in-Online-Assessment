@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
  // Initialize Monaco Editor
  require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs' } });
  require(['vs/editor/editor.main'], function () {
@@ -249,7 +249,6 @@ async function detectEmotion() {
 setupWebcam().then(() => {
     setInterval(detectEmotion, 5000);  // Every 5 seconds
 });
-=======
  // Initialize Monaco Editor
  require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs' } });
  require(['vs/editor/editor.main'], function () {
@@ -500,4 +499,3 @@ async function detectEmotion() {
 setupWebcam().then(() => {
     setInterval(detectEmotion, 5000);  // Every 5 seconds
 });
->>>>>>> 13fc31d (Initial Commit)
