@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /* Reset and base styles */
 * {
     margin: 0;
@@ -161,7 +161,6 @@ body {
     background-color: var(--primary-color);
     color: white;
 }
-=======
 /* Reset and base styles */
 * {
     margin: 0;
@@ -324,4 +323,3 @@ body {
     background-color: var(--primary-color);
     color: white;
 }
->>>>>>> 13fc31d (Initial Commit)
