@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
@@ -47,7 +46,6 @@ def detect_emotion(frame, face_cascade):
         emotion = EMOTIONS[preds.argmax()]
         return emotion, float(preds.max())
     
-=======
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
@@ -96,5 +94,5 @@ def detect_emotion(frame, face_cascade):
         emotion = EMOTIONS[preds.argmax()]
         return emotion, float(preds.max())
     
->>>>>>> 13fc31d (Initial Commit)
+
     return None, None
