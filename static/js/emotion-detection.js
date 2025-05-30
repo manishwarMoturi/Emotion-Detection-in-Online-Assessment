@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 // Webcam setup
 const video = document.getElementById('webcam');
 const emotionLabel = document.getElementById('detected-emotion-label');
@@ -204,7 +204,6 @@ async function detectEmotion() {
 
 setupWebcam();
 updateEmotionTimeline();
-=======
 // Webcam setup
 const video = document.getElementById('webcam');
 const emotionLabel = document.getElementById('detected-emotion-label');
@@ -410,4 +409,4 @@ async function detectEmotion() {
 
 setupWebcam();
 updateEmotionTimeline();
->>>>>>> 13fc31d (Initial Commit)
+
