@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 // Immediate debugging message to verify script loading
 console.log('🔍 SCRIPT LOADED: emotion-detection.js');
 
@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
     testButton.addEventListener('click', () => {
         detector.detectEmotion();
     });
-=======
+
 // Immediate debugging message to verify script loading
 console.log('🔍 SCRIPT LOADED: emotion-detection.js');
 
@@ -654,5 +654,5 @@ document.addEventListener('DOMContentLoaded', () => {
     testButton.addEventListener('click', () => {
         detector.detectEmotion();
     });
->>>>>>> 13fc31d (Initial Commit)
+
 }); 
