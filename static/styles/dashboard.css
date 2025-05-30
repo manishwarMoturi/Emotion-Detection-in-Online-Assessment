@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /* Dashboard Container */
 .dashboard-container {
     max-width: 1200px;
@@ -184,7 +184,6 @@
 
 .logout-btn:hover {
     background-color: rgba(245, 0, 87, 0.1) !important;
-=======
 /* Dashboard Container */
 .dashboard-container {
     max-width: 1200px;
@@ -370,5 +369,4 @@
 
 .logout-btn:hover {
     background-color: rgba(245, 0, 87, 0.1) !important;
->>>>>>> 13fc31d (Initial Commit)
 } 
