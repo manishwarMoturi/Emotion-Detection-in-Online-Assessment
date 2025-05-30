@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -425,3 +426,432 @@
     </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Results - Emotion Detection Coding Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}">
+    <style>
+        .results-container {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background-color: var(--background-paper);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-card h3 {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-group select {
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            background-color: var(--background);
+            color: var(--text-primary);
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--background-paper);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .results-table th,
+        .results-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .results-table th {
+            background-color: var(--background);
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .score-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+        }
+
+        .score-excellent {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .score-good {
+            background-color: #2196f3;
+            color: white;
+        }
+
+        .score-average {
+            background-color: #ff9800;
+            color: white;
+        }
+
+        .score-poor {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .action-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .primary-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .secondary-btn {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .chart-container {
+            background-color: var(--background-paper);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-title {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .emotion-analysis {
+            background-color: var(--background-paper);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .emotion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .emotion-card {
+            background-color: var(--background);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .emotion-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .emotion-value {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .emotion-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .emotion-trend {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .emotion-trend h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .emotion-bar {
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+        }
+
+        .emotion-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .emotion-bar-fill.happy { background-color: #4caf50; }
+        .emotion-bar-fill.neutral { background-color: #ff9800; }
+        .emotion-bar-fill.stressed { background-color: #f44336; }
+        .emotion-bar-fill.confident { background-color: #2196f3; }
+
+        .emotion-bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .results-container {
+                padding: 1rem;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+
+            .filter-group {
+                width: 100%;
+            }
+
+            .filter-group select {
+                width: 100%;
+            }
+
+            .results-table th,
+            .results-table td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Emotion Detection Coding Platform</div>
+        <div class="nav-links">
+            <a href="{{ url_for('testtaker_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('testtaker_exams') }}">Manage Exams</a>
+            <a href="{{ url_for('testtaker_results') }}" class="active">Results</a>
+            <a href="{{ url_for('testtaker_profile') }}">Profile</a>
+            <a href="{{ url_for('index') }}" class="logout-btn">Logout</a>
+        </div>
+        </div>
+    </nav>
+
+    <div class="results-container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Average Score</h3>
+        <div class="stat-value">{{ average_score }}%</div>
+        <p>Based on all exams</p>
+    </div>
+    <div class="stat-card">
+        <h3>Total Exams</h3>
+        <div class="stat-value">{{ total_exams }}</div>
+        <p>Completed this month</p>
+    </div>
+    <div class="stat-card">
+        <h3>Pass Rate</h3>
+        <div class="stat-value">{{ pass_rate }}%</div>
+        <p>Students passing exams</p>
+    </div>
+</div>
+
+        <div class="emotion-analysis">
+            <h3>Student Emotion Analysis</h3>
+            <div class="emotion-grid">
+                <div class="emotion-card">
+                    <div class="emotion-icon">😊</div>
+                    <div class="emotion-value">45%</div>
+                    <div class="emotion-label">Happy</div>
+                </div>
+                <div class="emotion-card">
+                    <div class="emotion-icon">😐</div>
+                    <div class="emotion-value">30%</div>
+                    <div class="emotion-label">Neutral</div>
+                </div>
+                <div class="emotion-card">
+                    <div class="emotion-icon">😰</div>
+                    <div class="emotion-value">15%</div>
+                    <div class="emotion-label">Stressed</div>
+                </div>
+                <div class="emotion-card">
+                    <div class="emotion-icon">😎</div>
+                    <div class="emotion-value">10%</div>
+                    <div class="emotion-label">Confident</div>
+                </div>
+            </div>
+            <div class="emotion-trend">
+                <h4>Emotion Distribution Over Time</h4>
+                <div class="emotion-bar">
+                    <div class="emotion-bar-fill happy" style="width: 45%"></div>
+                </div>
+                <div class="emotion-bar-label">
+                    <span>Happy</span>
+                    <span>45%</span>
+                </div>
+                <div class="emotion-bar">
+                    <div class="emotion-bar-fill neutral" style="width: 30%"></div>
+                </div>
+                <div class="emotion-bar-label">
+                    <span>Neutral</span>
+                    <span>30%</span>
+                </div>
+                <div class="emotion-bar">
+                    <div class="emotion-bar-fill stressed" style="width: 15%"></div>
+                </div>
+                <div class="emotion-bar-label">
+                    <span>Stressed</span>
+                    <span>15%</span>
+                </div>
+                <div class="emotion-bar">
+                    <div class="emotion-bar-fill confident" style="width: 10%"></div>
+                </div>
+                <div class="emotion-bar-label">
+                    <span>Confident</span>
+                    <span>10%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="filters">
+            <div class="filter-group">
+                <label for="examFilter">Exam:</label>
+                <select id="examFilter">
+                    <option value="">All Exams</option>
+                    <option value="ds">Data Structures</option>
+                    <option value="algo">Algorithms</option>
+                    <option value="python">Python Programming</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="dateFilter">Date Range:</label>
+                <select id="dateFilter">
+                    <option value="all">All Time</option>
+                    <option value="month">This Month</option>
+                    <option value="week">This Week</option>
+                    <option value="today">Today</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="scoreFilter">Score Range:</label>
+                <select id="scoreFilter">
+                    <option value="">All Scores</option>
+                    <option value="90">90% and above</option>
+                    <option value="80">80-89%</option>
+                    <option value="70">70-79%</option>
+                    <option value="60">Below 70%</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h3 class="chart-title">Performance Trend</h3>
+            <canvas id="performanceChart"></canvas>
+        </div>
+
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th>Exam</th>
+                    <th>Date</th>
+                    <th>Participants</th>
+                    <th>Average Score</th>
+                    <th>Pass Rate</th>
+                    <th>Dominant Emotion</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exam in exam_results %}
+                <tr>
+                    <td>{{ exam.title }}</td>
+                    <td>{{ exam.date }}</td>
+                    <td>{{ exam.participants }}</td>
+                    <td><span class="score-badge score-excellent">{{ exam.average_score }}%</span></td>
+                    <td>{{ exam.pass_rate }}%</td>
+                    <td><span class="emotion-icon">{{ exam.dominant_emotion_icon }}</span> {{ exam.dominant_emotion }} ({{ exam.dominant_emotion_percentage }}%)</td>
+                    <td>
+                        <button class="action-btn primary-btn">View Details</button>
+                        <button class="action-btn secondary-btn">Export</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Filter change handlers
+        document.querySelectorAll('select').forEach(select => {
+            select.addEventListener('change', () => {
+                alert('Filter functionality will be implemented here');
+            });
+        });
+
+        // Action button handlers
+        document.querySelectorAll('.action-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const action = button.textContent;
+                alert(`${action} functionality will be implemented here`);
+            });
+        });
+
+        // Chart initialization (placeholder)
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+        // Chart implementation will be added here
+
+        // Add emotion analysis functionality
+        function updateEmotionAnalysis() {
+            // This function will be implemented to update emotion data in real-time
+            alert('Emotion analysis update functionality will be implemented here');
+        }
+
+        // Call update function periodically (every 5 minutes)
+        setInterval(updateEmotionAnalysis, 300000);
+    </script>
+</body>
+</html>
+>>>>>>> 13fc31d (Initial Commit)

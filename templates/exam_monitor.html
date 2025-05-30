@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,3 +75,81 @@
     </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Exam Monitor - Emotion Detection Coding Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}" />
+    <style>
+        .monitor-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        .exam-info {
+            margin-bottom: 2rem;
+        }
+        .exam-info h2 {
+            margin-bottom: 0.5rem;
+        }
+        .student-list {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .student-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .student-item:last-child {
+            border-bottom: none;
+        }
+        .student-name {
+            font-weight: 600;
+        }
+        .emotion-label {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Emotion Detection Coding Platform</div>
+        <div class="nav-links">
+            <a href="{{ url_for('testtaker_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('testtaker_exams') }}">Manage Exams</a>
+            <a href="{{ url_for('testtaker_results') }}">Results</a>
+            <a href="{{ url_for('testtaker_profile') }}">Profile</a>
+            <a href="{{ url_for('index') }}" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="monitor-container">
+        <div class="exam-info">
+            <h2>Monitoring Exam: {{ exam.title }}</h2>
+            <p><strong>Date:</strong> {{ exam.date }}</p>
+            <p><strong>Duration:</strong> {{ exam.duration }}</p>
+            <p><strong>Status:</strong> {{ exam.status }}</p>
+        </div>
+
+        <div class="student-list">
+            <h3>Students Currently Taking the Exam</h3>
+            <p>Real-time emotion data will be displayed here.</p>
+            <!-- Placeholder for student emotion data -->
+        </div>
+    </div>
+
+    <script>
+        // Placeholder for future real-time monitoring implementation
+        // This can be extended to fetch and display live emotion data via WebSocket or polling
+    </script>
+</body>
+</html>
+>>>>>>> 13fc31d (Initial Commit)

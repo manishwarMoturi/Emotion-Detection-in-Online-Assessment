@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -473,3 +474,480 @@
         </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>User Management - Emotion Detection Coding Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}" />
+    <style>
+        .admin-container {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .filter-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-select {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .action-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .primary-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .secondary-btn {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .table-container {
+            background-color: var(--background-paper);
+            border-radius: 8px;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            color: var(--text-primary);
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table th {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+        }
+
+        .status-active {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .status-inactive {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .action-icon {
+            cursor: pointer;
+            color: var(--text-secondary);
+            margin-right: 0.5rem;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .page-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: var(--background-paper);
+        }
+
+        .page-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .admin-container {
+                padding: 1rem;
+            }
+
+            .search-bar,
+            .filter-section {
+                flex-direction: column;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Emotion Detection Coding Platform</div>
+        <div class="nav-links">
+            <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('admin_users') }}" class="active">Users</a>
+            <a href="{{ url_for('admin_exams') }}">Exams</a>
+            <a href="{{ url_for('admin_reports') }}">Reports</a>
+            <a href="{{ url_for('index') }}" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <h1>User Management</h1>
+        
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search users..." id="searchInput" />
+            <button class="action-btn primary-btn" id="searchBtn">Search</button>
+        </div>
+
+        <div class="filter-section">
+            <select class="filter-select" id="roleFilter">
+                <option value="">All Roles</option>
+                <option value="student">Student</option>
+                <option value="testtaker">Test Taker</option>
+                <option value="admin">Admin</option>
+            </select>
+            <select class="filter-select" id="statusFilter">
+                <option value="">All Status</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+            </select>
+        </div>
+
+        <div class="action-buttons">
+            <button class="action-btn secondary-btn" id="exportBtn">Export Users</button>
+            <button class="action-btn secondary-btn" id="bulkActionsBtn">Bulk Actions</button>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table" id="usersTable">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="select-all" /></th>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Last Active</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                    <!-- User rows will be populated here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination" id="pagination">
+            <!-- Pagination buttons will be populated here -->
+        </div>
+    </div>
+
+       
+
+        <script>
+            const usersTableBody = document.getElementById('usersTableBody');
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const roleFilter = document.getElementById('roleFilter');
+            const statusFilter = document.getElementById('statusFilter');
+            const selectAllCheckbox = document.getElementById('select-all');
+            const pagination = document.getElementById('pagination');
+
+            let usersData = [];
+            let currentPage = 1;
+            const rowsPerPage = 10;
+
+            function fetchUsers() {
+                fetch('/api/admin/users')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            usersData = data.users;
+                            renderTable();
+                            renderPagination();
+                        } else {
+                            alert('Failed to fetch users');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching users:', error);
+                    });
+            }
+
+            function renderTable() {
+                const filteredUsers = usersData.filter(user => {
+                    const searchText = searchInput.value.toLowerCase();
+                    const role = roleFilter.value;
+                    const status = statusFilter.value;
+
+                    const matchesSearch = user.username.toLowerCase().includes(searchText) || (user.full_name && user.full_name.toLowerCase().includes(searchText));
+                    const matchesRole = role ? user.role === role : true;
+                    const matchesStatus = status ? ((status === 'active' && user.active !== false) || (status === 'inactive' && user.active === false)) : true;
+
+                    return matchesSearch && matchesRole && matchesStatus;
+                });
+
+                const start = (currentPage - 1) * rowsPerPage;
+                const end = start + rowsPerPage;
+                const paginatedUsers = filteredUsers.slice(start, end);
+
+                usersTableBody.innerHTML = '';
+
+                paginatedUsers.forEach(user => {
+                    const tr = document.createElement('tr');
+
+                    tr.innerHTML = `
+                        <td><input type="checkbox" data-userid="${user._id}" /></td>
+                        <td>${user._id}</td>
+                        <td>${user.full_name || user.username}</td>
+                        <td>${user.email || ''}</td>
+                        <td>${user.role}</td>
+                        <td><span class="status-badge ${user.active !== false ? 'status-active' : 'status-inactive'}">${user.active !== false ? 'Active' : 'Inactive'}</span></td>
+                        <td>${user.last_active || 'N/A'}</td>
+                        <td>
+                            <span class="action-icon" data-action="edit" data-userid="${user._id}">✏️</span>
+                            <span class="action-icon" data-action="delete" data-userid="${user._id}">🗑️</span>
+                            <span class="action-icon" data-action="view" data-userid="${user._id}">👁️</span>
+                        </td>
+                    `;
+
+                    usersTableBody.appendChild(tr);
+                });
+            }
+
+            function renderPagination() {
+                const filteredUsers = usersData.filter(user => {
+                    const searchText = searchInput.value.toLowerCase();
+                    const role = roleFilter.value;
+                    const status = statusFilter.value;
+
+                    const matchesSearch = user.username.toLowerCase().includes(searchText) || (user.full_name && user.full_name.toLowerCase().includes(searchText));
+                    const matchesRole = role ? user.role === role : true;
+                    const matchesStatus = status ? ((status === 'active' && user.active !== false) || (status === 'inactive' && user.active === false)) : true;
+
+                    return matchesSearch && matchesRole && matchesStatus;
+                });
+
+                const pageCount = Math.ceil(filteredUsers.length / rowsPerPage);
+                pagination.innerHTML = '';
+
+                for (let i = 1; i <= pageCount; i++) {
+                    const btn = document.createElement('button');
+                    btn.textContent = i;
+                    btn.classList.add('page-btn');
+                    if (i === currentPage) btn.classList.add('active');
+                    btn.addEventListener('click', () => {
+                        currentPage = i;
+                        renderTable();
+                        renderPagination();
+                    });
+                    pagination.appendChild(btn);
+                }
+            }
+
+            searchBtn.addEventListener('click', () => {
+                currentPage = 1;
+                renderTable();
+                renderPagination();
+            });
+
+            searchInput.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') {
+                    currentPage = 1;
+                    renderTable();
+                    renderPagination();
+                }
+            });
+
+            roleFilter.addEventListener('change', () => {
+                currentPage = 1;
+                renderTable();
+                renderPagination();
+            });
+
+            statusFilter.addEventListener('change', () => {
+                currentPage = 1;
+                renderTable();
+                renderPagination();
+            });
+
+            selectAllCheckbox.addEventListener('change', () => {
+                const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+                checkboxes.forEach(cb => cb.checked = selectAllCheckbox.checked);
+            });
+
+            usersTableBody.addEventListener('click', (e) => {
+                if (e.target.classList.contains('action-icon')) {
+                    const action = e.target.getAttribute('data-action');
+                    const userId = e.target.getAttribute('data-userid');
+                    alert(`${action} user with ID: ${userId} - functionality to be implemented`);
+                }
+            });
+
+            // Export Users button click handler
+            document.getElementById('exportBtn').addEventListener('click', () => {
+                fetch('/api/admin/users')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            const csv = convertToCSV(data.users, ['_id', 'username', 'full_name', 'email', 'role', 'active', 'last_active']);
+                            downloadCSV(csv, 'users_export.csv');
+                        } else {
+                            alert('Failed to export users: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        alert('Error exporting users: ' + error);
+                    });
+            });
+
+            // Bulk Actions button click handler
+            document.getElementById('bulkActionsBtn').addEventListener('click', () => {
+                const selectedCheckboxes = Array.from(document.querySelectorAll('tbody input[type="checkbox"]:checked'));
+                const selectedUserIds = selectedCheckboxes.map(cb => cb.getAttribute('data-userid'));
+
+                if (selectedUserIds.length === 0) {
+                    alert('Please select at least one user to perform bulk actions.');
+                    return;
+                }
+
+                const action = prompt('Enter bulk action to perform on selected users (activate, deactivate, delete):').toLowerCase();
+
+                if (!['activate', 'deactivate', 'delete'].includes(action)) {
+                    alert('Invalid action. Please enter activate, deactivate, or delete.');
+                    return;
+                }
+
+                if (action === 'delete' && !confirm('Are you sure you want to delete the selected users? This action cannot be undone.')) {
+                    return;
+                }
+
+                fetch('/api/admin/users/bulk', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user_ids: selectedUserIds,
+                        action: action
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert('Bulk action performed successfully.');
+                        // Refresh user list
+                        fetchUsers();
+                    } else {
+                        alert('Failed to perform bulk action: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    alert('Error performing bulk action: ' + error);
+                });
+            });
+
+            // Helper function to convert JSON array to CSV string
+            function convertToCSV(objArray, headerList) {
+                const array = typeof objArray !== 'object' ? JSON.parse(objArray) : objArray;
+                let str = '';
+                // Add header row
+                str += headerList.join(',') + '\r\n';
+
+                for (let i = 0; i < array.length; i++) {
+                    let line = '';
+                    for (let index = 0; index < headerList.length; index++) {
+                        let head = headerList[index];
+                        let val = array[i][head] !== undefined ? array[i][head] : '';
+                        // Escape quotes and commas
+                        val = String(val).replace(/"/g, '""');
+                        if (val.search(/("|,|\n)/g) >= 0) {
+                            val = `"${val}"`;
+                        }
+                        line += (index > 0 ? ',' : '') + val;
+                    }
+                    str += line + '\r\n';
+                }
+                return str;
+            }
+
+            // Helper function to trigger CSV download
+            function downloadCSV(csv, filename) {
+                const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                if (navigator.msSaveBlob) { // IE 10+
+                    navigator.msSaveBlob(blob, filename);
+                } else {
+                    const link = document.createElement("a");
+                    if (link.download !== undefined) {
+                        const url = URL.createObjectURL(blob);
+                        link.setAttribute("href", url);
+                        link.setAttribute("download", filename);
+                        link.style.visibility = 'hidden';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+                }
+            }
+
+            // Initial fetch
+            fetchUsers();
+        </script>
+</body>
+</html>
+>>>>>>> 13fc31d (Initial Commit)

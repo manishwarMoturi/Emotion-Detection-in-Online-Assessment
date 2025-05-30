@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -390,3 +391,397 @@
     </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports & Analytics - Emotion Detection Coding Platform</title>
+    <link rel="stylesheet" href="/static/styles/main.css">
+    <link rel="stylesheet" href="/static/styles/dashboard.css">
+    <style>
+        .admin-container {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .report-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .filter-select {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+            min-width: 200px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .action-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .primary-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .secondary-btn {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .report-card {
+            background-color: var(--background-paper);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .report-card h3 {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 200px;
+            background-color: var(--background-base);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            color: var(--text-primary);
+            margin-top: 2rem;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table th {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .trend-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.875rem;
+        }
+
+        .trend-up {
+            color: #4caf50;
+        }
+
+        .trend-down {
+            color: #f44336;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 0.5rem 0;
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .admin-container {
+                padding: 1rem;
+            }
+
+            .report-filters {
+                flex-direction: column;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Emotion Detection Coding Platform</div>
+        <div class="nav-links">
+            <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('admin_users') }}">Users</a>
+            <a href="{{ url_for('admin_exams') }}">Exams</a>
+            <a href="{{ url_for('admin_reports') }}" class="active">Reports</a>
+            <a href="{{ url_for('index') }}" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <h1>Reports & Analytics</h1>
+
+        <div class="report-filters">
+            <div class="filter-group">
+                <label class="filter-label">Date Range</label>
+                <select class="filter-select">
+                    <option value="7">Last 7 days</option>
+                    <option value="30">Last 30 days</option>
+                    <option value="90">Last 90 days</option>
+                    <option value="365">Last year</option>
+                </select>
+            </div>
+            <!-- <div class="filter-group">
+                <label class="filter-label">Exam Type</label>
+                <select class="filter-select">
+                    <option value="all">All Types</option>
+                    <option value="coding">Coding</option>
+                    <option value="mcq">Multiple Choice</option>
+                    <option value="mixed">Mixed</option>
+                </select>
+            </div> -->
+            <div class="filter-group">
+                <label class="filter-label">User Role</label>
+                <select class="filter-select">
+                    <option value="all">All Roles</option>
+                    <option value="student">Student</option>
+                    <option value="test_taker">Test Taker</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="action-btn primary-btn">Generate Report</button>
+            <button class="action-btn secondary-btn">Export Data</button>
+            <button class="action-btn secondary-btn">Schedule Report</button>
+        </div>
+
+        <div class="report-grid">
+            <div class="report-card">
+                <h3>Exam Completion Rate</h3>
+                <div class="chart-container">
+                    <canvas id="completionRateChart"></canvas>
+                </div>
+                <div class="metric-value">{{ total_exams_taken }}</div>
+                <div class="trend-indicator {% if detailed_analytics[0].trend == 'up' %}trend-up{% else %}trend-down{% endif %}">
+                    {% if detailed_analytics[0].trend == 'up' %}↑{% else %}↓{% endif %} {{ detailed_analytics[0].change }} from last period
+                </div>
+            </div>
+            <div class="report-card">
+                <h3>Average Emotion Score</h3>
+                <div class="chart-container">
+                    <canvas id="emotionScoreChart"></canvas>
+                </div>
+                <div class="metric-value">{{ average_score }}</div>
+                <div class="trend-indicator {% if detailed_analytics[1].trend == 'up' %}trend-up{% else %}trend-down{% endif %}">
+                    {% if detailed_analytics[1].trend == 'up' %}↑{% else %}↓{% endif %} {{ detailed_analytics[1].change }} from last period
+                </div>
+            </div>
+            <div class="report-card">
+                <h3>User Engagement</h3>
+                <div class="chart-container">
+                    <canvas id="userEngagementChart"></canvas>
+                </div>
+                <div class="metric-value">{{ active_users }}</div>
+                <div class="trend-indicator {% if detailed_analytics[2].trend == 'up' %}trend-up{% else %}trend-down{% endif %}">
+                    {% if detailed_analytics[2].trend == 'up' %}↑{% else %}↓{% endif %} {{ detailed_analytics[2].change }} from last period
+                </div>
+            </div>
+        </div>
+
+        <h2>Detailed Analytics</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Current Value</th>
+                    <th>Previous Value</th>
+                    <th>Change</th>
+                    <th>Trend</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Total Exams Taken</td>
+                    <td>1,234</td>
+                    <td>1,100</td>
+                    <td>+134</td>
+                    <td class="trend-up">↑ 12%</td>
+                </tr>
+                <tr>
+                    <td>Average Score</td>
+                    <td>78.5%</td>
+                    <td>75.2%</td>
+                    <td>+3.3%</td>
+                    <td class="trend-up">↑ 4%</td>
+                </tr>
+                <tr>
+                    <td>Active Users</td>
+                    <td>856</td>
+                    <td>890</td>
+                    <td>-34</td>
+                    <td class="trend-down">↓ 4%</td>
+                </tr>
+                <tr>
+                    <td>Emotion Detection Accuracy</td>
+                    <td>94.2%</td>
+                    <td>92.8%</td>
+                    <td>+1.4%</td>
+                    <td class="trend-up">↑ 2%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Action button handlers
+        document.querySelectorAll('.action-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const action = button.textContent;
+                alert(`${action} functionality will be implemented here`);
+            });
+        });
+
+        // Filter change handlers
+        document.querySelectorAll('.filter-select').forEach(select => {
+            select.addEventListener('change', () => {
+                alert(`Filter changed to: ${select.value}`);
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Data for charts from backend variables
+        const completionRate = {{ total_exams_taken }};
+        const averageEmotionScore = {{ average_score }};
+        const userEngagement = {{ active_users }};
+
+        // Exam Completion Rate Chart
+        const ctxCompletion = document.getElementById('completionRateChart').getContext('2d');
+        const completionRateChart = new Chart(ctxCompletion, {
+            type: 'doughnut',
+            data: {
+                labels: ['Completed Exams', 'Remaining'],
+                datasets: [{
+                    data: [completionRate, 1000 - completionRate], // Assuming 1000 total exams for demo
+                    backgroundColor: ['#4caf50', '#e0e0e0'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // Average Emotion Score Chart
+        const ctxEmotion = document.getElementById('emotionScoreChart').getContext('2d');
+        const emotionScoreChart = new Chart(ctxEmotion, {
+            type: 'bar',
+            data: {
+                labels: ['Emotion Score'],
+                datasets: [{
+                    label: 'Score',
+                    data: [averageEmotionScore],
+                    backgroundColor: '#2196f3'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 10
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // User Engagement Chart
+        const ctxEngagement = document.getElementById('userEngagementChart').getContext('2d');
+        const userEngagementChart = new Chart(ctxEngagement, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'], // Example months
+                datasets: [{
+                    label: 'User Engagement (%)',
+                    data: [80, 85, 90, 88, 92, 95, userEngagement],
+                    fill: false,
+                    borderColor: '#ff9800',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+>>>>>>> 13fc31d (Initial Commit)

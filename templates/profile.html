@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -253,3 +254,260 @@
     </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profile - Emotion Detection Coding Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" />
+    <style>
+        .profile-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background-color: var(--background-paper);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .profile-info h1 {
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .profile-role {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background-color: var(--background-paper);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card h3 {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin: 0.5rem 0;
+        }
+
+        .profile-section {
+            background-color: var(--background-paper);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-section h2 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .save-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .save-btn:hover {
+            background-color: #7b1fa2;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Emotion Detection Coding Platform</div>
+        <div class="nav-links">
+            <a href="{{ url_for('student_dashboard') }}">Dashboard</a>
+            <a href="#">Practice</a>
+            <a href="{{ url_for('exams') }}">Exams</a>
+            <a href="{{ url_for('profile') }}" class="active">Profile</a>
+            <a href="{{ url_for('index') }}" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar">J</div>
+            <div class="profile-info">
+                <h1>{{ full_name }}</h1>
+                <p class="profile-role">Student</p>
+            </div>
+        </div>
+
+        <div class="profile-stats">
+            <div class="stat-card">
+                <h3>Problems Solved</h3>
+                <div class="stat-value">{{ problems_solved }}</div>
+            </div>
+            <div class="stat-card">
+                <h3>Exams Completed</h3>
+                <div class="stat-value">{{ exams_completed }}</div>
+            </div>
+            <div class="stat-card">
+                <h3>Average Score</h3>
+                <div class="stat-value">{{ average_score }}%</div>
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <h2>Personal Information</h2>
+            <form id="profile-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" name="fullname" value="{{ full_name }}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" value="{{ email }}" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="institution">Institution</label>
+                        <input type="text" id="institution" name="institution" value="{{ institution }}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="studentId">Student ID</label>
+                        <input type="text" id="studentId" name="studentId" value="{{ student_id }}" />
+                    </div>
+                </div>
+                <button type="submit" class="save-btn">Save Changes</button>
+            </form>
+        </div>
+
+        <div class="profile-section">
+            <h2>Change Password</h2>
+            <form id="password-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="currentPassword">Current Password</label>
+                        <input type="password" id="currentPassword" name="currentPassword" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" name="newPassword" required />
+                    </div>
+                </div>
+                <button type="submit" class="save-btn">Update Password</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('profile-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fullName = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const institution = document.getElementById('institution').value;
+            // Assuming studentId is not editable or not sent to backend for update
+
+            try {
+                const response = await fetch('/api/student/profile/update', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'same-origin',
+                    body: JSON.stringify({
+                        full_name: fullName,
+                        email: email,
+                        institution: institution
+                    })
+                });
+                const result = await response.json();
+                if (result.status === 'success') {
+                    alert('Profile updated successfully!');
+                    // Optionally reload or update UI here
+                    location.reload();
+                } else {
+                    alert('Failed to update profile: ' + result.message);
+                }
+            } catch (error) {
+                alert('Error updating profile: ' + error.message);
+            }
+        });
+
+        document.getElementById('password-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+
+            try {
+                const response = await fetch('/api/testtaker/profile/password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'same-origin',
+                    body: JSON.stringify({
+                        current_password: currentPassword,
+                        new_password: newPassword
+                    })
+                });
+                const result = await response.json();
+                if (result.status === 'success') {
+                    alert('Password updated successfully!');
+                    // Optionally clear form fields
+                    document.getElementById('currentPassword').value = '';
+                    document.getElementById('newPassword').value = '';
+                } else {
+                    alert('Failed to update password: ' + result.message);
+                }
+            } catch (error) {
+                alert('Error updating password: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>
+>>>>>>> 13fc31d (Initial Commit)
