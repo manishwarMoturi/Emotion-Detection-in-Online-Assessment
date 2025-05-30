@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-=======
 document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -42,5 +41,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
->>>>>>> 13fc31d (Initial Commit)
+
 }); 
