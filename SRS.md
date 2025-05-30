@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Software Requirements Specification (SRS) for Emotion Detection Web Application
 
 ## 1. Introduction
@@ -272,7 +271,6 @@ The system uses MongoDB as the primary database. The main collections and their 
 - emotion: string
 
 ---
-=======
 # Software Requirements Specification (SRS) for Emotion Detection Web Application
 
 ## 1. Introduction
@@ -546,4 +544,3 @@ The system uses MongoDB as the primary database. The main collections and their 
 - emotion: string
 
 ---
->>>>>>> 13fc31d (Initial Commit)
