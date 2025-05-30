@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Emotion Detection Web Application
 
 This project is a Flask-based web application for emotion detection using a pre-trained deep learning model. It provides features for students, test takers, and administrators to manage exams, practice problems, and track emotion history during practice sessions.
@@ -67,7 +66,6 @@ python app.py
 pip install -r requirements.txt
 
 
-=======
 # Emotion Detection Web Application
 
 This project is a Flask-based web application for emotion detection using a pre-trained deep learning model. It provides features for students, test takers, and administrators to manage exams, practice problems, and track emotion history during practice sessions.
@@ -136,5 +134,4 @@ python app.py
 pip install -r requirements.txt
 
 
->>>>>>> 13fc31d (Initial Commit)
 python "C:\EmotionDection\frontend\app.py"
