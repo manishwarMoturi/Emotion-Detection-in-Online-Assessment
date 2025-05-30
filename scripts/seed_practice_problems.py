@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from pymongo import MongoClient
 
 def seed_practice_problems():
@@ -78,7 +78,7 @@ def seed_practice_problems():
 
 if __name__ == "__main__":
     seed_practice_problems()
-=======
+
 from pymongo import MongoClient
 
 def seed_practice_problems():
@@ -158,4 +158,3 @@ def seed_practice_problems():
 
 if __name__ == "__main__":
     seed_practice_problems()
->>>>>>> 13fc31d (Initial Commit)
