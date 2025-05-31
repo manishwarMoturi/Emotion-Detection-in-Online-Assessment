@@ -34,7 +34,7 @@ app.config['PERMANENT_SESSION_LIFETIME'] = 3600  # 1 hour
 
 # Load emotion detection model
 try:
-    emotion_model = load_model(EMOTION_MODEL_PATH)
+    emotion_model = load_model('final22.h5')
     #emotion_model = load_model(r'C:/EmotionDection/frontend/final22.h5')
     EMOTIONS = ['angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral']
 except Exception as e:
