@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Problem - Emotion Detection Coding Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/practice.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/editor/editor.main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Emotion Detection Coding Platform</div>
+        <div class="nav-links">
+            <a href="{{ url_for('student_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('practice') }}" class="active">Practice</a>
+            <a href="{{ url_for('exams') }}">Exams</a>
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('index') }}" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="practice-container">
+        <div class="problem-section">
+        {% if problem %}
+        <div class="problem-description">
+            <h2>{{ problem.title }}</h2>
+            <span class="difficulty {{ problem.difficulty }}">{{ problem.difficulty|capitalize }}</span>
+            <div class="description-content">
+                <p>{{ problem.description }}</p>
+                <!-- Example content can be added here if needed -->
+            </div>
+        </div>
+        {% elif error_message %}
+        <p>{{ error_message }}</p>
+        {% else %}
+        <p>No problem selected.</p>
+        {% endif %}
+
+            <div class="code-section">
+                <div class="editor-header">
+                    <select id="language-select">
+                        <option value="javascript">JavaScript</option>
+                        <option value="python">Python</option>
+                        <option value="java">Java</option>
+                    </select>
+                    <button id="run-btn" class="run-btn">Run Code</button>
+                    <button id="submit-btn" class="run-btn">Submit Code</button>
+                </div>
+                <div id="editor"></div>
+                <div id="output" class="output-panel">
+                    <div class="output-header">Output</div>
+                    <div id="output-content"></div>
+                </div>
+            </div>
+        </div>
+
+                <div class="emotion-section">
+                    <div class="webcam-container">
+                        <h3>Emotion Detection</h3>
+                        <div class="detection-status">
+                            <span class="status-indicator active"></span>
+                            <span class="status-text">Detecting emotions...</span>
+                        </div>
+                        <video id="webcam" autoplay playsinline></video>
+                        
+                        <div class="emotion-visual-display">
+                            <h4>Current Emotion</h4>
+                            <div id="current-emotion-display">
+                                <span id="detected-emotion-label">Detecting...</span>
+                                <div id="detection-details"></div>
+                            </div>
+                        </div>
+                        
+                        <div id="status-message" class="status-message" style="display: none;"></div>
+                        <div id="error-message" class="error-message" style="display: none;"></div>
+                    </div>
+                    
+                    <div id="emotion-timeline" class="emotion-timeline"></div>
+                   
+                </div>
+
+        <div id="difficulty-prompt" class="difficulty-prompt" style="display: none;"></div>
+    </div>
+
+    <!-- Load our emotion detection code -->
+    <script type="module" src="{{ url_for('static', filename='js/emotion-detection.js') }}"></script>
+    
+    <!-- Load Monaco editor -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/loader.js"></script>
+    
+    <!-- Load main script -->
+    <script type="module" src="{{ url_for('static', filename='scripts/practice.js') }}"></script>
+
+    <script>
+        // Initialization or additional logic can be added here if needed
+    </script>
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Problem - Emotion Detection Coding Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/practice.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/editor/editor.main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Emotion Detection Coding Platform</div>
+        <div class="nav-links">
+            <a href="{{ url_for('student_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('practice') }}" class="active">Practice</a>
+            <a href="{{ url_for('exams') }}">Exams</a>
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('index') }}" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="practice-container">
+        <div class="problem-section">
+        {% if problem %}
+        <div class="problem-description">
+            <h2>{{ problem.title }}</h2>
+            <span class="difficulty {{ problem.difficulty }}">{{ problem.difficulty|capitalize }}</span>
+            <div class="description-content">
+                <p>{{ problem.description }}</p>
+                <!-- Example content can be added here if needed -->
+            </div>
+        </div>
+        {% elif error_message %}
+        <p>{{ error_message }}</p>
+        {% else %}
+        <p>No problem selected.</p>
+        {% endif %}
+
+            <div class="code-section">
+                <div class="editor-header">
+                    <select id="language-select">
+                        <option value="javascript">JavaScript</option>
+                        <option value="python">Python</option>
+                        <option value="java">Java</option>
+                    </select>
+                    <button id="run-btn" class="run-btn">Run Code</button>
+                    <button id="submit-btn" class="run-btn">Submit Code</button>
+                </div>
+                <div id="editor"></div>
+                <div id="output" class="output-panel">
+                    <div class="output-header">Output</div>
+                    <div id="output-content"></div>
+                </div>
+            </div>
+        </div>
+
+                <div class="emotion-section">
+                    <div class="webcam-container">
+                        <h3>Emotion Detection</h3>
+                        <div class="detection-status">
+                            <span class="status-indicator active"></span>
+                            <span class="status-text">Detecting emotions...</span>
+                        </div>
+                        <video id="webcam" autoplay playsinline></video>
+                        
+                        <div class="emotion-visual-display">
+                            <h4>Current Emotion</h4>
+                            <div id="current-emotion-display">
+                                <span id="detected-emotion-label">Detecting...</span>
+                                <div id="detection-details"></div>
+                            </div>
+                        </div>
+                        
+                        <div id="status-message" class="status-message" style="display: none;"></div>
+                        <div id="error-message" class="error-message" style="display: none;"></div>
+                    </div>
+                    
+                    <div id="emotion-timeline" class="emotion-timeline"></div>
+                   
+                </div>
+
+        <div id="difficulty-prompt" class="difficulty-prompt" style="display: none;"></div>
+    </div>
+
+    <!-- Load our emotion detection code -->
+    <script type="module" src="{{ url_for('static', filename='js/emotion-detection.js') }}"></script>
+    
+    <!-- Load Monaco editor -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/loader.js"></script>
+    
+    <!-- Load main script -->
+    <script type="module" src="{{ url_for('static', filename='scripts/practice.js') }}"></script>
+
+    <script>
+        // Initialization or additional logic can be added here if needed
+    </script>
+</body>
+</html>  -->
