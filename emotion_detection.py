@@ -63,8 +63,8 @@ from keras.preprocessing.image import img_to_array
 EMOTIONS = ["angry", "disgust", "scared", "happy", "sad", "surprised", "neutral"]
 
 # Load the pre-trained model
-model_path = r'C:\EmotionDection\frontend\final22.h5'  # Update path if needed
-model = load_model(model_path)
+#model_path = r'C:\EmotionDection\frontend\final22.h5'  # Update path if needed
+model = load_model('final22.h5')
 
 # Optional: compile (suppress warnings)
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
