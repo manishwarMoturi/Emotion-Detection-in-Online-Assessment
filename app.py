@@ -21,9 +21,9 @@ from io import BytesIO
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
-#load_dotenv()  # Load environment variables from .env file
+load_dotenv()  # Load environment variables from .env file
 
-#EMOTION_MODEL_PATH = os.getenv('EMOTION_MODEL_PATH')
+EMOTION_MODEL_PATH = os.getenv('EMOTION_MODEL_PATH')
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'  # Change this to a secure secret key
@@ -34,7 +34,7 @@ app.config['PERMANENT_SESSION_LIFETIME'] = 3600  # 1 hour
 
 # Load emotion detection model
 try:
-    emotion_model = load_model('final22.h5')
+    emotion_model = load_model(EMOTION_MODEL_PATH)
     #emotion_model = load_model(r'C:/EmotionDection/frontend/final22.h5')
     EMOTIONS = ['angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral']
 except Exception as e:
