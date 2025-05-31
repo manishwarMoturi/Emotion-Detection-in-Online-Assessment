@@ -6,14 +6,14 @@ from keras.preprocessing.image import img_to_array
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+#load_dotenv()
 # ...rest of your code
 
 # Emotion labels
 EMOTIONS = ["angry", "disgust", "scared", "happy", "sad", "surprised", "neutral"]
 
 # Load the pre-trained model
-load_dotenv()  # Load environment variables from .env file
+#load_dotenv()  # Load environment variables from .env file
 
 #EMOTION_MODEL_PATH = os.getenv('final22.h5')
 # Update path if needed
