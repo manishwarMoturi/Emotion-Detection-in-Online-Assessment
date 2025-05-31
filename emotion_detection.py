@@ -15,9 +15,9 @@ EMOTIONS = ["angry", "disgust", "scared", "happy", "sad", "surprised", "neutral"
 # Load the pre-trained model
 load_dotenv()  # Load environment variables from .env file
 
-EMOTION_MODEL_PATH = os.getenv('final22.h5')
+#EMOTION_MODEL_PATH = os.getenv('final22.h5')
 # Update path if needed
-model = load_model(EMOTION_MODEL_PATH)
+model = load_model('final22.h5')
 # Optional: compile (suppress warnings)
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
