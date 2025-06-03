@@ -49,7 +49,7 @@ USERS_FILE = 'users.json'
 EMOTION_HISTORY_FILE = 'emotion_history.json'
 
 # MongoDB connection setup
-client = MongoClient('mongodb+srv://<db_username>:<db_password>@cluster0.ai4bggi.mongodb.net/')  # Update with your MongoDB URI
+client = MongoClient('mongodb+srv://moturimanishwar7:f8He3kGxYWqChrzj@emotiondetection.hvn1grl.mongodb.net/?retryWrites=true&w=majority&appName=emotiondetection')  # Update with your MongoDB URI
 
 db = client['emotion_detection']  # Database name
 db_exams = db['exams']  # Collection name
