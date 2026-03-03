@@ -1,0 +1,36 @@
+id,title,hex,red,green,blue,numViews,numVotes,numComments,numHearts,rank,dateCreated,emotion,tags
+1,Passion Red,FF0000,255,0,0,15234,892,143,67,1,2008-01-15,angry,red passion anger energy
+2,Crimson Rage,DC143C,220,20,60,12087,734,98,45,5,2008-02-20,angry,crimson rage fury intense
+3,Fiery Orange,FF4500,255,69,0,11543,678,87,52,8,2008-03-10,angry,orange fire hot burning
+4,Scarlet Anger,FF2400,255,36,0,9876,567,76,38,12,2008-04-05,angry,scarlet anger hot intense
+5,Dark Maroon,800000,128,0,0,8765,489,65,29,15,2008-05-12,angry,dark maroon deep brooding
+6,Sky Blue Calm,87CEEB,135,206,235,18765,1023,187,89,2,2008-01-20,neutral,sky blue calm peaceful
+7,Soft Lavender,E6E6FA,230,230,250,16543,934,156,72,4,2008-02-10,neutral,lavender soft gentle calm
+8,Misty Gray,C0C0C0,192,192,192,14321,823,134,61,6,2008-03-05,neutral,gray misty neutral quiet
+9,Pale Beige,F5F5DC,245,245,220,13456,756,112,54,9,2008-04-15,neutral,beige pale neutral warm
+10,Light White,F8F8FF,248,248,255,12987,701,98,47,11,2008-05-20,neutral,white light pure clean
+11,Sunny Yellow,FFD700,255,215,0,21345,1234,234,112,1,2008-01-05,happy,yellow sunny bright joyful
+12,Cheerful Lime,ADFF2F,173,255,47,19876,1123,212,98,3,2008-02-15,happy,lime bright cheerful energetic
+13,Golden Joy,FFA500,255,165,0,17654,987,176,85,7,2008-03-25,happy,orange golden warm joyful
+14,Coral Smile,FF7F50,255,127,80,15432,876,154,71,10,2008-04-30,happy,coral warm smile friendly
+15,Peach Delight,FFDAB9,255,218,185,14876,832,145,68,13,2008-05-15,happy,peach warm delight sweet
+16,Midnight Fear,1C1C1C,28,28,28,10234,623,89,41,16,2008-06-10,fear,black midnight dark fear
+17,Deep Purple,4B0082,75,0,130,11876,712,104,48,14,2008-06-20,fear,purple deep dark ominous
+18,Shadow Gray,2F4F4F,47,79,79,9543,578,82,35,18,2008-07-05,fear,dark shadow gray gloomy
+19,Eerie Green,006400,0,100,0,8765,489,71,32,20,2008-07-15,fear,green dark eerie mysterious
+20,Void Black,000000,0,0,0,12345,734,98,44,17,2008-07-25,fear,black void empty dark
+21,Ocean Blue,006994,0,105,148,20123,1134,198,91,2,2008-08-05,sad,blue ocean deep melancholy
+22,Rainy Gray,708090,112,128,144,17654,987,167,78,6,2008-08-15,sad,gray rainy gloomy overcast
+23,Steel Blue,4682B4,70,130,180,16543,923,156,73,8,2008-08-25,sad,blue steel cold distant
+24,Slate Sorrow,708090,112,128,144,15234,856,143,65,10,2008-09-05,sad,slate sorrow loneliness quiet
+25,Pale Blue,ADD8E6,173,216,230,14321,789,132,60,12,2008-09-15,sad,pale blue soft gentle melancholy
+26,Electric Shock,FFFF00,255,255,0,22456,1345,245,118,1,2008-10-05,surprise,yellow electric bright shock
+27,Hot Pink,FF69B4,255,105,180,21234,1234,223,105,3,2008-10-15,surprise,pink hot vivid unexpected
+28,Vivid Magenta,FF00FF,255,0,255,19876,1123,201,95,5,2008-10-25,surprise,magenta vivid bright surprising
+29,Cyan Flash,00FFFF,0,255,255,18765,1034,187,88,7,2008-11-05,surprise,cyan flash bright vivid
+30,Neon Orange,FF6600,255,102,0,17654,945,172,82,9,2008-11-15,surprise,neon orange vivid energetic
+31,Sickly Yellow,9B870C,155,135,12,8765,489,72,33,19,2008-12-05,disgust,yellow sickly dark unpleasant
+32,Muddy Brown,8B4513,139,69,19,9234,534,78,36,17,2008-12-15,disgust,brown muddy earthy unpleasant
+33,Bile Green,808000,128,128,0,8543,478,68,31,21,2009-01-05,disgust,olive green bitter unpleasant
+34,Murky Olive,6B8E23,107,142,35,7654,423,61,28,23,2009-01-15,disgust,olive murky dull unappealing
+35,Toxic Green,39FF14,57,255,20,10234,589,85,39,15,2009-01-25,disgust,green toxic sharp unpleasant

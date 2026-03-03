@@ -1,6 +1,7 @@
 
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 from werkzeug.security import generate_password_hash, check_password_hash
+import csv
 import json
 import os
 from dotenv import load_dotenv
@@ -1533,6 +1534,45 @@ def submit_exam_and_store_score(exam_id):
     except Exception as e:
         import traceback
         traceback.print_exc()
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+
+
+COLOURLOVERS_CSV_PATH = os.path.join(os.path.dirname(__file__), 'data', 'colourlovers_dataset.csv')
+VALID_EMOTIONS = {'angry', 'disgust', 'fear', 'happy', 'neutral', 'sad', 'surprise'}
+
+def _load_colourlovers_data():
+    rows = []
+    try:
+        with open(COLOURLOVERS_CSV_PATH, newline='', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile)
+            rows = list(reader)
+    except Exception as e:
+        print(f"Warning: Could not load COLOURlovers dataset: {e}")
+    return rows
+
+_colourlovers_data = _load_colourlovers_data()
+
+@app.route('/api/colourlovers/dataset', methods=['GET'])
+def get_colourlovers_dataset():
+    try:
+        emotion_filter = request.args.get('emotion')
+        if emotion_filter and emotion_filter not in VALID_EMOTIONS:
+            return jsonify({'status': 'error', 'message': f'Invalid emotion. Valid values: {sorted(VALID_EMOTIONS)}'}), 400
+        rows = [r for r in _colourlovers_data if not emotion_filter or r.get('emotion') == emotion_filter]
+        return jsonify({'status': 'success', 'data': rows})
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+
+@app.route('/api/colourlovers/by_emotion/<emotion>', methods=['GET'])
+def get_colours_by_emotion(emotion):
+    if emotion not in VALID_EMOTIONS:
+        return jsonify({'status': 'error', 'message': f'Invalid emotion. Valid values: {sorted(VALID_EMOTIONS)}'}), 400
+    try:
+        rows = [r for r in _colourlovers_data if r.get('emotion') == emotion]
+        if not rows:
+            return jsonify({'status': 'error', 'message': f'No colours found for emotion: {emotion}'}), 404
+        return jsonify({'status': 'success', 'emotion': emotion, 'data': rows})
+    except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
 if __name__ == '__main__':
